@@ -92,6 +92,7 @@ namespace PlayerFileCleaner.Models {
                + "Unknown UUIDs failed: " + unknownUUIDFailed + "\n"
                + "Geyser UUIDs cleaned: " + geyserCleaned + "\n"
                + "Duplicates: " + duplicates + "\n"
+               + "Unmatched UUIDs: " + noMatch + "\n"
                + "==========Advancements========== \n"
                + "Advancements found: " + advancementUUIDTotalFound + "\n"
                + "Advancements cleaned: " + advancementUUIDTotalCleaned + "\n"
@@ -100,6 +101,7 @@ namespace PlayerFileCleaner.Models {
                + "Unknown advancements converted: " + advancementUnknownUUIDConverted + "\n"
                + "Unknown advancements failed: " + advancementUnknownUUIDFailed + "\n"
                + "Geyser advancements cleaned: " + advancementGeyserCleaned + "\n"
+               + "Unmatched advancements: " + advancementNoMatch + "\n"
                + "Duplicates: " + advancementDuplicates;
             return stat;
         }
