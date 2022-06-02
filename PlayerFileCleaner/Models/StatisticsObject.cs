@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PlayerFileCleaner.Models {
+
+    enum Stat : ushort {
+        playerdata = 0,
+        advancements = 10
+    }
     internal class StatisticsObject {
         //Playerdata
         public int uuidTotalFound = 0;
@@ -28,55 +33,61 @@ namespace PlayerFileCleaner.Models {
         public int advancementNoMatch = 0;
 
         public void StatisticIncrement(int stat, string type) {
-            switch (stat) {
+            int i = (ushort)Enum.Parse(typeof(Stat), type) + stat;
+            switch (i) {
+                case 0:
+                    uuidTotalFound++;
+                    break;
                 case 1:
-                    if (type == "playerdata") {
-                        v3UUIDConverted++;
-                    } else if (type == "advancements") {
-                        advancementV3UUIDConverted++;
-                    }
+                    uuidTotalCleaned++;
                     break;
                 case 2:
-                    if (type == "playerdata") {
-                        v3UUIDFailed++;
-                    } else if (type == "advancements") {
-                        advancementV3UUIDFailed++;
-                    }
+                    v3UUIDConverted++;
                     break;
                 case 3:
-                    if (type == "playerdata") {
-                        unknownUUIDConverted++;
-                    } else if (type == "advancements") {
-                        advancementUnknownUUIDConverted++;
-                    }
+                    v3UUIDFailed++;
                     break;
                 case 4:
-                    if (type == "playerdata") {
-                        unknownUUIDFailed++;
-                    } else if (type == "advancements") {
-                        advancementUnknownUUIDFailed++;
-                    }
+                    unknownUUIDConverted++;
                     break;
                 case 5:
-                    if (type == "playerdata") {
-                        geyserCleaned++;
-                    } else if (type == "advancements") {
-                        advancementGeyserCleaned++;
-                    }
+                    unknownUUIDFailed++;
                     break;
                 case 6:
-                    if (type == "playerdata") {
-                        duplicates++;
-                    } else if (type == "advancements") {
-                        advancementDuplicates++;
-                    }
+                    geyserCleaned++;
                     break;
                 case 7:
-                    if (type == "playerdata") {
-                        noMatch++;
-                    } else if (type == "advancements") {
-                        advancementNoMatch++;
-                    }
+                    duplicates++;
+                    break;
+                case 8:
+                    noMatch++;
+                    break;
+                case 10:
+                    advancementUUIDTotalFound++;
+                    break;
+                case 11:
+                    advancementUUIDTotalCleaned++;
+                    break;
+                case 12:
+                    advancementV3UUIDConverted++;
+                    break;
+                case 13:
+                    advancementV3UUIDFailed++;
+                    break;
+                case 14:
+                    advancementUnknownUUIDConverted++;
+                    break;
+                case 15:
+                    advancementUnknownUUIDFailed++;
+                    break;
+                case 16:
+                    advancementGeyserCleaned++;
+                    break;
+                case 17:
+                    advancementDuplicates++;
+                    break;
+                case 18:
+                    advancementNoMatch++;
                     break;
                 default:
                     break;

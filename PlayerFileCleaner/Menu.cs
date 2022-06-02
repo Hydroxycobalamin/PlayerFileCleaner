@@ -21,17 +21,17 @@ namespace PlayerFileCleaner {
         private void BtnStartCleaning_Click(object sender, EventArgs e) {
             bool cleanGeyser = CbGeyser.Checked;
             string filePathJson = tbJsonPath.Text;
-            if (filePathJson.Equals("") || filePathJson == null) {
+            if (string.IsNullOrEmpty(filePathJson)) { 
                 MessageBox.Show("You must select a player_names.json file.", "PlayerFileCleaner");
                 return;
             }
             string outputPath = TbOutputPath.Text;
-            if (outputPath.Equals("") || outputPath == null) {
+            if (string.IsNullOrEmpty(outputPath)) {
                 MessageBox.Show("You must select a path for the output.", "PlayerFileCleaner");
                 return;
             }
             string filePathWorld = TbWorldPath.Text;
-            if (filePathWorld.Equals("") || filePathWorld == null) {
+            if (string.IsNullOrEmpty(filePathWorld)) {
                 MessageBox.Show("You must select a world.", "PlayerFileCleaner");
                 return;
             }
@@ -51,14 +51,14 @@ namespace PlayerFileCleaner {
             Cleaner cleaner = new();
             outputPath += "\\PlayerFileCleaner\\";
             Directory.CreateDirectory(outputPath);
-            Logging.Init(outputPath + "\\Logs.log", 1);
+            Logging.Init(outputPath + "\\logs.log", 1);
             cleaner.InitializeCleanup(playerNames, advancementsFiles, playerFiles, outputPath, worldName, cleanGeyser);
         }
 
         private void tbJsonPath_TextChanged(object sender, EventArgs e) {
-            if (tbJsonPath.Text != string.Empty && !tbJsonPath.Text.Equals("")
-                && TbWorldPath.Text != string.Empty && !TbWorldPath.Text.Equals("")
-                && TbOutputPath.Text != string.Empty && !TbOutputPath.Text.Equals("")) {
+            if (!string.IsNullOrEmpty(tbJsonPath.Text)
+                && !string.IsNullOrEmpty(TbWorldPath.Text)
+                && !string.IsNullOrEmpty(TbOutputPath.Text)) {
                 BtnStartCleaning.Enabled = true;
             }
         }

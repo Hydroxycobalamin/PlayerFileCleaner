@@ -2,7 +2,11 @@
 using System.Reflection;
 
 namespace PlayerFileCleaner.Helpers {
-
+    enum Action {
+        Deleted = 0,
+        Moved = 1,
+        Copied = 2
+    }
     /// <summary>
     /// Class for logging
     /// </summary>
@@ -30,7 +34,7 @@ namespace PlayerFileCleaner.Helpers {
         /// Writes a simple string to the logfile
         /// </summary>
         /// <param name="str">Logentry</param>
-        public static void Write(String str) {
+        public static void Write(string str) {
             try {
                 Debug.WriteLine("(!) Logging: " + str);
                 FileInfo fi = new FileInfo(fFileName);
@@ -48,7 +52,7 @@ namespace PlayerFileCleaner.Helpers {
                 using StreamWriter sw = File.AppendText(fFileName);
                 string[] lines = str.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
                 if (lines.Length > 0) {
-                    sw.WriteLine("[{0}: {1}", DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss") + "]", lines[0]);
+                    sw.WriteLine($"{DateTime.Now:yyyy.MM.dd HH:mm:ss}: {lines[0]}");
                     for (int i = 1; i < lines.Length; i++) {
                         sw.WriteLine("                     {0}", lines[i]);
                     }
@@ -64,7 +68,7 @@ namespace PlayerFileCleaner.Helpers {
         /// </summary>
         /// <param name="message">Log-Eintrag</param>
         /// <param name="e">Exception</param>
-        public static void Write(String message, Exception e) {
+        public static void Write(string message, Exception e) {
             if (fLogLevel < 2) {
                 message += " " + e.ToString();
             } else {
@@ -73,21 +77,8 @@ namespace PlayerFileCleaner.Helpers {
             Write(message);
         }
 
-        public static void Write(string action, string destination, string source) {
-            string str = "";
-            switch (action) {           
-                case "move":
-                    str = "[Moved] File \nfrom " + source + "\nto " + destination;
-                    break;
-                case "copy":
-                    str = "[Copied] File \nfrom " + source + "\nto " + destination;
-                    break;
-                case "delete":
-                    str = "[Deleted] File \nfrom " + source + "\nto " + destination;
-                    break;
-                default:
-                    break;
-            }
+        public static void Write(short action, string destination, string source) {
+            var str = $"[{(Action)action}] File \nfrom {source}\nto {destination}";
             Write(str);
         }
 

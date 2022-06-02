@@ -75,7 +75,7 @@ namespace PlayerFileCleaner.Helpers {
                 return;
             }
             File.Move(source, destination + fileName);
-            Logging.Write("move", destination + fileName, source);
+            Logging.Write(1, destination + fileName, source);
         }
         public static void CopyFile(string source, string destination, string fileName) {
             if (!(Directory.Exists(destination))) {
@@ -85,7 +85,7 @@ namespace PlayerFileCleaner.Helpers {
                 return;
             }
             File.Copy(source, destination + fileName);
-            Logging.Write("copy", destination + fileName, source);
+            Logging.Write(2, destination + fileName, source);
         }
     }
 }
