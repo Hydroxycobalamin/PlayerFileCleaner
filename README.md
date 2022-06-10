@@ -3,8 +3,10 @@
 
 PlayerFileCleaner cleans your playerdata in your world folders.
 
-It tries to converts V3 and unknown playerdata to V4 playerdata by calling the Mojangs API.
+It tries to convert V3(cracked player data) and other obscure player data to valid V4 by calling the Mojangs API.
 Optional it can also remove bedrock(Geyser) playerdata, if you want that.
+
+PlayerFileCleaner will log what it does. You can find logs and backups inside a PlayerFileCleaner folder in your selected output path.
 
 ### Dependencies
 
