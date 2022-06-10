@@ -6,13 +6,26 @@ PlayerFileCleaner cleans your playerdata in your world folders.
 It tries to converts V3 and unknown playerdata to V4 playerdata by calling the Mojangs API.
 Optional it can also remove bedrock(Geyser) playerdata, if you want that.
 
+### Dependencies
+
+1. PlayerFileCleaner requires [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+
 ### How to use
 
-1. Download PlayerFileCleaner or build it yourself.
-2. Create a .json file which contains the uuids and player names of your players on your server. You can use Denizen and this script to create the file automatically.
-3. Start PlayerFileCleaner and select the .json file, the world you want to clean and a output path, where the backups and logs should be stored.
-
-Ideally you create a backup of your server, just in case something goes wrong.
+1. Download PlayerFileCleaner from the Releases tab or build it yourself.
+2. Create a .json file which contains the uuids and player names of your players on your server. You can use Denizen and this script to generate the file automatically.
+    1. Install [Denizen](https://github.com/Hydroxycobalamin/Denizen-Script-Collection) on your server.
+    2. Drag and drop the [Player Exporter](https://forum.denizenscript.com/resources/player-exporter.105/) into your /plugins/Denizen/scripts folder.
+    3. Run `/ex reload`
+    4. Run `/ex run player_exporter`
+    5. Stop the server
+3. Create a backup of your server, just in case something borks.
+4. Start PlayerFileCleaner and tick the options you want.
+5. Select the .json file you just generated.
+6. Select an output folder in which PlayerFileCleaner saves logs and backups player files.
+7. Select a world folder you want to clean.
+8. Click on Start
+9. Repeat step 7 and 8 with each world containing a playerdata or advancements folder.
 
 ### The short of the license is:
 
